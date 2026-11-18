@@ -65,8 +65,15 @@ void Game::update()
 
     Position head = snake.getHead();
 
+    // Check wall collision
     if (head.x <= 0 || head.x >= WIDTH - 1 ||
         head.y <= 0 || head.y >= HEIGHT - 1)
+    {
+        isRunning = false;
+    }
+
+    // Check self collision
+    if (snake.checkSelfCollision())
     {
         isRunning = false;
     }
