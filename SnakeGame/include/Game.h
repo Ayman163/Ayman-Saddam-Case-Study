@@ -23,6 +23,7 @@ private:
     void update();
     void render();
     void spawnFood();
+    void resetGame();
 
 public:
     Game();
