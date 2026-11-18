@@ -16,3 +16,7 @@ void Food::setPosition(int newX, int newY)
     x = newX;
     y = newY;
 }
+Position Food::getPosition() const
+{
+    return {x, y};
+}
