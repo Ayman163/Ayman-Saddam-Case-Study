@@ -3,6 +3,12 @@
 
 #include <iostream>
 
+struct Position
+{
+    int x;
+    int y;
+};
+
 class GameObject
 {
 public:
