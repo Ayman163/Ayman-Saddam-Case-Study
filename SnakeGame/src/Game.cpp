@@ -1,5 +1,6 @@
 #include "Game.h"
 
+#include <random>
 #include <iostream>
 #include <conio.h>
 #include <chrono>
