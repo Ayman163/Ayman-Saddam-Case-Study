@@ -62,6 +62,14 @@ void Game::handleInput()
 void Game::update()
 {
     snake.move(directionX, directionY);
+
+    Position head = snake.getHead();
+
+    if (head.x <= 0 || head.x >= WIDTH - 1 ||
+        head.y <= 0 || head.y >= HEIGHT - 1)
+    {
+        isRunning = false;
+    }
 }
 
 void Game::render()
