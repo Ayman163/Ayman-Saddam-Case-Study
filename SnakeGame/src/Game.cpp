@@ -75,6 +75,7 @@ void Game::update()
     // Check self collision
     if (snake.checkSelfCollision())
     {
+        std::cout << "Self collision detected!\n";
         isRunning = false;
     }
 }
@@ -132,8 +133,13 @@ void Game::run()
     {
         handleInput();
         update();
-        render();
 
-        std::this_thread::sleep_for(200ms);
+        if (isRunning)
+        {
+            render();
+            std::this_thread::sleep_for(200ms);
+        }
     }
+
+    render();
 }
