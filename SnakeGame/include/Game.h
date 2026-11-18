@@ -22,6 +22,7 @@ private:
     void handleInput();
     void update();
     void render();
+    void spawnFood();
 
 public:
     Game();
