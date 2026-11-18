@@ -4,11 +4,6 @@
 #include "GameObject.h"
 #include <vector>
 
-struct Position
-{
-    int x;
-    int y;
-};
 
 class Snake : public GameObject
 {
