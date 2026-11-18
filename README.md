@@ -54,7 +54,6 @@ SnakeGame/
 │   └── Game.cpp
 │
 ├── main.cpp
-├── CMakeLists.txt
 └── README.md
 ```
 
