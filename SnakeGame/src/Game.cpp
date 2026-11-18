@@ -90,6 +90,17 @@ void Game::spawnFood()
 
     food.setPosition(x, y);
 }
+void Game::resetGame()
+{
+    snake = Snake(5, 5);
+    food.setPosition(10, 8);
+    scoreManager.resetScore();
+
+    directionX = 1;
+    directionY = 0;
+
+    isRunning = true;
+}
 void Game::update()
 {
     Position nextHead = snake.getHead();
@@ -172,22 +183,60 @@ void Game::render()
 
     std::cout << "\nW A S D: Move | Q: Quit\n";
 }
+void Game::showGameOver()
+{
+    std::cout << "\033[2J\033[H";
+
+    std::cout << "##############################\n";
+    std::cout << "#                            #\n";
+    std::cout << "#          GAME OVER         #\n";
+    std::cout << "#                            #\n";
+    std::cout << "#       Final Score: "
+              << scoreManager.getScore() << "       #\n";
+    std::cout << "#                            #\n";
+    std::cout << "#       1. Play Again        #\n";
+    std::cout << "#       2. Exit              #\n";
+    std::cout << "#                            #\n";
+    std::cout << "##############################\n";
+}
 
 void Game::run()
 {
     using namespace std::chrono_literals;
 
-    while (isRunning)
+    while (true)
     {
-        handleInput();
-        update();
-
-        if (isRunning)
+        while (isRunning)
         {
+            handleInput();
+
+            if (!isRunning)
+                break;
+
+            update();
+
             render();
+
             std::this_thread::sleep_for(200ms);
         }
-    }
 
-    render();
+        if (isRunning == false)
+        {
+            showGameOver();
+
+            std::cout << "\nChoose an option: ";
+
+            char choice;
+            std::cin >> choice;
+
+            if (choice == '1')
+            {
+                resetGame();
+            }
+            else
+            {
+                break;
+            }
+        }
+    }
 }
