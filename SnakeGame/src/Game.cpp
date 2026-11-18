@@ -29,26 +29,38 @@ void Game::handleInput()
         {
             case 'w':
             case 'W':
-                directionX = 0;
-                directionY = -1;
+                if (directionY != 1)
+                {
+                    directionX = 0;
+                    directionY = -1;
+                }
                 break;
 
             case 's':
             case 'S':
-                directionX = 0;
-                directionY = 1;
+                if (directionY != -1)
+                {
+                    directionX = 0;
+                    directionY = 1;
+                }
                 break;
 
             case 'a':
             case 'A':
-                directionX = -1;
-                directionY = 0;
+                if (directionX != 1)
+                {
+                    directionX = -1;
+                    directionY = 0;
+                }
                 break;
 
             case 'd':
             case 'D':
-                directionX = 1;
-                directionY = 0;
+                if (directionX != -1)
+                {
+                    directionX = 1;
+                    directionY = 0;
+                }
                 break;
 
             case 'q':
