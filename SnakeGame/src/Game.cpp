@@ -71,7 +71,26 @@ void Game::handleInput()
         }
     }
 }
+void Game::spawnFood()
+{
+    static std::random_device rd;
+    static std::mt19937 gen(rd());
 
+    std::uniform_int_distribution<int> xDist(1, WIDTH - 2);
+    std::uniform_int_distribution<int> yDist(1, HEIGHT - 2);
+
+    int x;
+    int y;
+
+    do
+    {
+        x = xDist(gen);
+        y = yDist(gen);
+    }
+    while (snake.occupies(x, y));
+
+    food.setPosition(x, y);
+}
 void Game::update()
 {
     Position nextHead = snake.getHead();
@@ -100,6 +119,7 @@ void Game::update()
     if (ateFood)
     {
         scoreManager.addPoints(10);
+        spawnFood();
     }
 
     // Check self collision
