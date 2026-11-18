@@ -10,11 +10,20 @@ private:
     int y;
 
 public:
+
+    Position getPosition() const;
+
     Food(int startX, int startY);
 
     void draw() const override;
 
     void setPosition(int newX, int newY);
+
+    Position Food::getPosition() const
+    {
+        return {x, y};
+    }
+    
 };
 
 #endif
