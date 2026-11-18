@@ -17,7 +17,6 @@ Game::Game()
 
 Game::~Game()
 {
-    std::cout << "\nGame closed.\n";
 }
 
 void Game::handleInput()
