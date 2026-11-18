@@ -70,13 +70,43 @@ void Game::render()
 
     std::cout << "===== SNAKE GAME =====\n\n";
 
-    snake.draw();
-    food.draw();
+    for (int y = 0; y < HEIGHT; y++)
+    {
+        for (int x = 0; x < WIDTH; x++)
+        {
+            if (y == 0 || y == HEIGHT - 1 ||
+                x == 0 || x == WIDTH - 1)
+            {
+                std::cout << "#";
+            }
+            else if (snake.occupies(x, y))
+            {
+                Position head = snake.getHead();
+
+                if (head.x == x && head.y == y)
+                    std::cout << "@";
+                else
+                    std::cout << "o";
+            }
+            else
+            {
+                Position foodPosition = food.getPosition();
+
+                if (foodPosition.x == x &&
+                    foodPosition.y == y)
+                    std::cout << "*";
+                else
+                    std::cout << " ";
+            }
+        }
+
+        std::cout << '\n';
+    }
 
     std::cout << "\nScore: "
               << scoreManager.getScore();
 
-    std::cout << "\n\nW A S D: Move | Q: Quit\n";
+    std::cout << "\nW A S D: Move | Q: Quit\n";
 }
 
 void Game::run()
