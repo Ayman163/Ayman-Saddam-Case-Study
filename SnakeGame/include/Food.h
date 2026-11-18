@@ -18,12 +18,6 @@ public:
     void draw() const override;
 
     void setPosition(int newX, int newY);
-
-    Position Food::getPosition() const
-    {
-        return {x, y};
-    }
-    
 };
 
 #endif
