@@ -73,21 +73,37 @@ void Game::handleInput()
 
 void Game::update()
 {
-    snake.move(directionX, directionY);
+    Position nextHead = snake.getHead();
 
-    Position head = snake.getHead();
+    nextHead.x += directionX;
+    nextHead.y += directionY;
 
     // Check wall collision
-    if (head.x <= 0 || head.x >= WIDTH - 1 ||
-        head.y <= 0 || head.y >= HEIGHT - 1)
+    if (nextHead.x <= 0 || nextHead.x >= WIDTH - 1 ||
+        nextHead.y <= 0 || nextHead.y >= HEIGHT - 1)
     {
         isRunning = false;
+        return;
+    }
+
+    // Check food collision
+    Position foodPosition = food.getPosition();
+
+    bool ateFood = (nextHead.x == foodPosition.x &&
+                    nextHead.y == foodPosition.y);
+
+    // Move snake
+    snake.move(directionX, directionY, ateFood);
+
+    // Update score
+    if (ateFood)
+    {
+        scoreManager.addPoints(10);
     }
 
     // Check self collision
     if (snake.checkSelfCollision())
     {
-        std::cout << "Self collision detected!\n";
         isRunning = false;
     }
 }
