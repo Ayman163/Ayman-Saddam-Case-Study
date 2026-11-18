@@ -24,6 +24,7 @@ private:
     void render();
     void spawnFood();
     void resetGame();
+    void showGameOver();
 
 public:
     Game();
