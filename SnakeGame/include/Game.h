@@ -8,6 +8,8 @@
 class Game
 {
 private:
+    static const int WIDTH = 30;
+    static const int HEIGHT = 15;
     Snake snake;
     Food food;
     ScoreManager scoreManager;
